@@ -7,7 +7,32 @@ import axios from "axios";
 const App = () => {
 
   const [items, setItems] = useState([]);
+  const [meals, setMeals] = useState("")
 
+
+  const handleInput = (e) => {
+    setMeals(e.target.value)
+  }
+
+
+  const submitBtn = () => {
+    // console.log(items);
+
+
+    if (items && meals) {
+      let filteredMeals = items.filter((item) => {
+        return (
+          item.strMeal.toLowerCase().includes(meals.toLowerCase())
+        );
+      });
+
+      setItems(filteredMeals);
+    } else {
+      setItems(items);
+    }
+
+
+  }
 
   useEffect(() => {
     axios.get("https://www.themealdb.com/api/json/v1/1/search.php?s=i")
@@ -18,6 +43,11 @@ const App = () => {
         console.log(err);
       })
   }, [])
+
+
+
+
+
   return (
     <>
 
@@ -28,7 +58,7 @@ const App = () => {
 
 
         <div className="relative w-full">
-          <input type="search"
+          <input type="search" onChange={handleInput}
             className=" block mx-auto border border-yellow-600 px-10 
              mt-5 rounded-full py-2 ps-4 mb-5 w-44 md:w-96"
             id="input_search" placeholder="Search" />
@@ -38,7 +68,9 @@ const App = () => {
             className="block mx-auto mt-3  text-white cursor-pointer ...
              px-2 py-2 rounded-xl text-xl font-bold
               bg-yellow-600 md:px-3 md:py-2" >
-            <i className="fa-solid fa-magnifying-glass">submit</i>
+            <i className="fa-solid fa-magnifying-glass"
+              onClick={submitBtn}
+            >submit</i>
 
           </button>
 
@@ -84,6 +116,3 @@ export default App
 
 
 
-
-
-// text-red-500 text-lg font-bold cursor-pointer underline
