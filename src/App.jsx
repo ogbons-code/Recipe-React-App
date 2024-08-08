@@ -96,10 +96,10 @@ const App = () => {
                   </div>
                   <div className=" flex justify-start ms-1 space-x-4 mb-4 me-1">
                     <a className=" bg-yellow-600 py-1 px-3 text-white text-md rounded-md cursor-pointer font-bold"
-                      href={strYoutube} target="_blank">Video</a>
+                      href={strYoutube} target="_blank">Watch Video</a>
                     <a href={strSource} target="_blank"
                       className="bg-yellow-600 py-1 px-2 text-white text-md rounded-md cursor-pointer font-bold">
-                      Source</a>
+                      Get Source</a>
                   </div>
                 </div>
               )
